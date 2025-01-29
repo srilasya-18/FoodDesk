@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="Contactstyle.css">
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Contact Us</h1>
+    </header>
+    <section style="text-align: center;">
+        <h2>We'd Love to Hear From You!</h2>
+        <p>If you have any questions or feedback about our food waste management system, feel free to reach out to us using the form below.</p>
+        <form action="#" method="POST">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+            <br>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <br>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="Enter the subject"><br><br>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required rows="5" placeholder="Enter your message here..."></textarea><br><br>
+            <input type="submit" value="Send Message"><br>
+        </form>
+    </section>
+    <footer style="text-align: center;">
+        <p>&copy; 2025 Food Waste Management. All Rights Reserved.</p>
+    </footer>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="Contactstyle.css">
+    <style>
+        body {
+            background-image: url('https://pin.it/5qseCKZCN');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>Contact Us</h1>
+    </header>
+    <section style="text-align: center;">
+        <h2>We'd Love to Hear From You!</h2>
+        <p>Have questions or feedback about our food waste management system? Reach out to us using the form below. We’re here to help!
+        </p>
+        <!-- <h2>We'd Love to Hear From You!</h2>
+        <p>If you have any questions or feedback about our food waste management system, feel free to reach out to us using the form below.</p> -->
+        <form id="contactForm" action="#" method="POST">
+            <label for="name" style="text-align:left">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+            <br>
+            <label for="email" style="text-align:left">Your Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <br>
+            <label for="subject" style="text-align:left">Subject</label>
+            <input type="text" id="subject" name="subject" required placeholder="Enter the subject"><br><br>
+            <label for="message" style="text-align:left">Message</label>
+            <textarea id="message" name="message" required rows="5" placeholder="Enter your message here..."></textarea><br><br>
+            <input type="submit" value="Send Message"><br>
+        </form>
+        <div id="responseMessage" style="text-align: left; margin-top: 20px;"></div>
+    </section>
+    <footer style="text-align: center;">
+        <p>&copy; 2025 Food Waste Management. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Adding JavaScript just before closing body tag -->
+    <script>
+        // Form validation and AJAX submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Simple client-side validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                alert("All fields are required.");
+                return;
+            }
+
+            // Basic email format validation
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!email.match(emailPattern)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            // Create an object with the form data
+            const formData = {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            };
+
+            // AJAX request to submit the form data
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/submit_form', true); // Replace with your server endpoint
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+            
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Display success message
+                    document.getElementById('responseMessage').innerHTML = "<p style='color: green;'>Your message has been sent successfully!</p>";
+                    document.getElementById('contactForm').reset(); // Reset the form fields
+                } else {
+                    // Display error message
+                    document.getElementById('responseMessage').innerHTML = "<p style='color: red;'>There was an error sending your message. Please try again later.</p>";
+                }
+            };
+
+            xhr.send(JSON.stringify(formData)); // Send form data as JSON
+        });
+    </script>
+</body>
+</html>

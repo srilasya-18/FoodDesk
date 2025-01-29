@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    background-color: #fce3c4;
+    /* background-color: rgb(243,237,234); */
+    color: #333;
+}
+
+header {
+    background-color: #f4a032;
+    /* background-color: #feb14e; */
+    /* background-color: rgb(225, 157, 120); */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    padding: 30px;
+    max-width: 400px;
+    margin: 30px auto; 
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color:#f4a032;
+    /* color:rgb(225, 157, 120) */
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    /* background-color:#f4a032; */
+    background-color: #ff9100;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    /* background-color: #f4a032; */
+    background-color: #ff9100;
+}
+
+footer {
+    /* background-color: #f4a032; */
+    /* background-color: rgb(244, 153, 104); */
+    background-color: #ff9100;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 30px;
+}
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px; 
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #f4a032;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+section {
+    padding: 30px;
+    max-width: 400px;
+    margin: 30px auto; 
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #f4a032;
+    text-align: center;
+    margin-bottom: 15px; 
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #f4a032;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #e6952c; 
+}
+
+footer {
+    background-color: #f4a032;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 0px;
+}  */

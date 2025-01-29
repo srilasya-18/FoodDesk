@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      #profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      #profile-header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+
+      #profile-header h3 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      #profile-info {
+        background-color: #fff;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      }
+
+      #profile-info p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: #555;
+      }
+
+      #profile-info strong {
+        font-weight: bold;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 50%;
+        display: block;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>User Profile</h2>
+
+    <!-- Profile Header with Logo and Username -->
+    <div id="profile-header">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/10337/10337609.png"
+        alt="Logo"
+      />
+      <h3 id="user-name">Loading...</h3>
+    </div>
+
+    <!-- Profile Information -->
+    <div id="profile-info">
+      <p><strong>Name:</strong> <span id="user-name-info">Loading...</span></p>
+      <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+      <p><strong>Role:</strong> <span id="user-role">Loading...</span></p>
+    </div>
+
+    <br />
+    <button onclick="logout()">Log Out</button>
+
+    <script>
+      // Load user profile data from LocalStorage
+      window.onload = function () {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (user) {
+          // Update profile header and info
+          document.getElementById("user-name").innerText = user.name;
+          document.getElementById("user-name-info").innerText = user.name;
+          document.getElementById("user-email").innerText = user.email;
+          document.getElementById("user-role").innerText = user.role;
+        } else {
+          alert("You are not logged in!");
+          window.location.href = "/login.html"; // Redirect to login page if no user data
+        }
+      };
+
+      // Log out function to clear LocalStorage and redirect to login page
+      function logout() {
+        localStorage.removeItem("user");
+        alert("You have logged out");
+        window.location.href = "/login.html";
+      }
+    </script>
+  </body>
+</html>
