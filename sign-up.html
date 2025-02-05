@@ -5,6 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>sign-up</title>
+    <style>
+        
+body {
+  background-color: #f5f5f5;
+  font-family:'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.text {
+  text-align: center;
+  font-size: 30px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 20px;
+  color: #3e3b3b;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: bold;
+}
+
+input[type="name"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 95%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px; /* Adds spacing between the fields */
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+#role:focus, /* Added focus styling for role */
+select:focus {
+  border-color: #f4a032;
+  outline: none;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #f4a032;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #f99513;
+}
+
+#role {
+  width: 100%; /* Ensures the select box is 100% width */
+}
+    </style>
 </head>
 <body>
     <div class="form-container">
