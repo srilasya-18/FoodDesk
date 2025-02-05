@@ -1,0 +1,312 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+  margin: 0;
+  background-color: white;
+}
+
+.menu {
+  width: auto;
+  float: left;
+  height: 20px;
+}
+
+ul {
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul li {
+  list-style: none;
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: orangered;
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px white(0, 0, 0, 0.2);
+  width: 300px;
+  padding: 20px;
+}
+
+.Box_container {
+  background-color: white;
+  width: 100%;
+  max-width: 700px;
+  padding: 0px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgb(227, 99, 39);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: auto;
+}
+
+.Category {
+  font-size: 2vh;
+  margin-top: 15px;
+  color: black;
+  text-align: 20px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.register_title {
+  background-color: white;
+  padding: 20px;
+  background-size: cover;
+  color: rgb(216, 98, 14);
+}
+
+.register {
+  text-align: center;
+  font-size: medium;
+  color: rgb(35, 56, 209);
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.registration_form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.registration_form form input {
+  color: #fff;
+  padding: 20px;
+  width: 30px;
+  border: 2px solid;
+
+  margin: auto;
+  border-radius: 15px;
+  outline: none;
+}
+
+.category label,
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.category input[type="radio"],
+.checkbox-container input[type="checkbox"] {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
+#email,
+#quantity,
+#button {
+  width: 90%;
+  text-align: 20px;
+}
+
+#quantity {
+  width: 50%;
+  padding: 8px;
+}
+
+#button {
+  padding: 12px;
+}
+
+.registration_form input,
+#email,
+#quantity,
+#button,
+#name,
+#phn_no,
+#radio,
+#address {
+  width: 90%;
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.expiry_date,
+.checkbox_container {
+  width: 90%;
+  margin-top: 10px;
+  text-align: left;
+}
+
+#Note {
+  width: 50%;
+  border-radius: 15px;
+  padding: 5px 15px;
+}
+
+.register:hover {
+  text-decoration: underline;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.Submitbtn,
+button {
+  border-radius: 20px;
+
+  margin: auto;
+  font-size: 15px;
+  padding: 5px 15px;
+  color: white;
+  box-shadow: rgb(132, 65, 23);
+
+  background-color: orangered;
+  align-self: flex-start;
+
+  text-decoration: none;
+  transition: ease 0.3s;
+}
+
+.Submitbtn,
+button:hover {
+  transform: scale(1.2);
+}
+
+.foot {
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.home {
+  background-color: white;
+  max-width: fit-content;
+}
+
+.bgimage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.title {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 80%;
+  text-align: center;
+  color: rgb(221, 68, 21);
+}
+
+.title h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.title h1:hover {
+  color: rgb(233, 68, 8);
+  -webkit-text-stroke: 1px rgba(233, 23, 12, 0.913);
+}
+
+.button {
+  display: inline-block;
+  margin-top: 5vh;
+  font-size: 25px;
+  padding: 10px 30px;
+  color: rgb(216, 75, 28);
+
+  box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.4);
+  background-color: white;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: ease-in-out 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.logo {
+  position: small;
+  top: 20px;
+  left: 20px;
+}
+
+.logo img {
+  width: 200px;
+  height: auto;
+}
+
+.content {
+  position: relative;
+  align-items: center;
+  width: 100%;
+  height: 15vh;
+  font-size: 24px;
+
+  color: black;
+  background-image: linear-gradient(rgba(1, 0, 5, 0.6), rgba(4, 1, 17, 0.6));
+}
+
+.menu {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.menu {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: rgb(224, 56, 9);
+  font-size: 18px;
+  padding: 8px 20px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.menu ul li a:hover {
+  background-color: #ce4f19;
+  color: black;
+}
