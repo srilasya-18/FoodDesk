@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Donations</title>
+    <link rel="stylesheet" href="vdostyle.css">
+</head>
+<body>
+        <h1 class="donation-heading">View Donations</h1>
+
+        <div id="donationsContainer"></div>
+    
+        <button id="clearAll" class="clear-btn">Clear All</button>
+    
+        <script src="viewDonations.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const donationsContainer = document.getElementById("donationsContainer");
+            const clearAllButton = document.getElementById("clearAll");
+
+            let donations = JSON.parse(localStorage.getItem("donations")) || [];
+
+            function displayDonations() {
+                donationsContainer.innerHTML = "";
+                if (donations.length === 0) {
+                    donationsContainer.innerHTML = "<p>No donations available.</p>";
+                    return;
+                }
+
+                donations.forEach((donation, index) => {
+                    const donationCard = document.createElement("div");
+                    donationCard.classList.add("donation-card");
+
+                    donationCard.innerHTML = `
+                        <h2>${donation.name}</h2>
+                        <p><strong>Email:</strong> ${donation.email}</p>
+                        <p><strong>Address:</strong> ${donation.address}</p>
+                        <p><strong>Phone:</strong> ${donation.phone || "N/A"}</p>
+                        <p><strong>Category:</strong> ${donation.category}</p>
+                        <p><strong>Expiry Date:</strong> ${donation.expiryDate || "N/A"}</p>
+                        <p><strong>Quantity:</strong> ${donation.quantity}</p>
+                        <p><strong>Note:</strong> ${donation.note}</p>
+                        <button class="delete-btn" data-index="${index}">Delete</button>
+                    `;
+
+                    donationsContainer.appendChild(donationCard);
+                });
+
+                // Add delete event listeners
+                document.querySelectorAll(".delete-btn").forEach(button => {
+                    button.addEventListener("click", function() {
+                        const index = this.getAttribute("data-index");
+                        donations.splice(index, 1);
+                        localStorage.setItem("donations", JSON.stringify(donations));
+                        displayDonations();
+                    });
+                });
+            }
+
+            displayDonations();
+
+            // Clear all donations
+            clearAllButton.addEventListener("click", function() {
+                localStorage.removeItem("donations");
+                displayDonations();
+            });
+        });
+    </script>
+
+</body>
+</html>

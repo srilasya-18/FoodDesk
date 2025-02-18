@@ -1,3 +1,13 @@
+/* Style for View Donations heading */
+.donation-heading {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ff6600; /* Adjust color as needed */
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -13,6 +23,7 @@ body {
   margin: 0;
   background-color: white;
 }
+
 
 .menu {
   width: auto;

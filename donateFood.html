@@ -2,97 +2,96 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Donate Food</title>
-
 </head>
 
 <body>
     <div class="Box_container">
-
         <section class="register_title">
             <div class="register">
                 <h1>Donate <span>a Bit</span></h1>
             </div>
             <p>
-            <h3>Its Not How Much We Give,But How Much Love We Put in Giving</h3>
+                <h3>Its Not How Much We Give, But How Much Love We Put in Giving</h3>
             </p>
         </section>
+        
         <section class="registration_form">
-            <label for="name">
-                <h3>Your Name</h3>
-            </label>
-            <input type="text" id="name" placeholder="Name" input="Name" /><br>
+            <label for="name"><h3>Your Name</h3></label>
+            <input type="text" id="name" placeholder="Name" required><br>
 
-            <label for="email">
-                <h3>Email</h3>
-            </label>
-            <input type="email" name="email" placeholder="Your Email" input="Email"> <br>
+            <label for="email"><h3>Email</h3></label>
+            <input type="email" id="email" placeholder="Your Email" required><br>
 
-            <label for="address">
-                <h3>Address</h3>
-            </label>
-            <input type="text" id="address" placeholder="Address" input="Address" /><br>
+            <label for="address"><h3>Address</h3></label>
+            <input type="text" id="address" placeholder="Address" required><br>
 
-            <label for="phn_no">
-                <h3>Phone Number</h3>
-            </label>
-
-            <input type="text" id="phn_no" placeholder="Phone Number" input="Phone Number" /><br>
-
-
+            <label for="phn_no"><h3>Phone Number</h3></label>
+            <input type="text" id="phone">
 
             <div class="category">
-                <h3>Category</h3><br>
-                <label><input type="radio" id="Veg" name="Category" value="Veg">Veg</label><br>
-                <label><input type="radio" id="Non-Veg" name="Category" value="Non-Veg"> Non-Veg</label><br>
-                <label><input type="radio" id="Both" name="Category" value="Both"> Both</label><br>
+                <h3>Category</h3>
+                <label><input type="radio" name="Category" value="Veg" required>Veg</label>
+                <label><input type="radio" name="Category" value="Non-Veg"> Non-Veg</label>
+                <label><input type="radio" name="Category" value="Both"> Both</label>
             </div>
 
+            <label for="Expiry_Date"><h3>Expiry Date:</h3></label>
+            <input type="date" id="expiryDate" required><br>
 
+            <label for="quantity"><h3>Quantity:</h3></label>
+            <input type="number" id="quantity" min="1" step="1" required><br>
 
-            <div class="expiry_date">
-
-
-                <label for="Expiry_Date">
-                    <h3>Expiry Date:</h3>
-                </label>
-                <input type="date" id="Expiry_Date" name="Expiry_Date"><br>
-            </div>
-
-            <label for="quantity">
-                <h3>Quantity:</h3>
-            </label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" step="1"><br>
-
-
-            <label for="Note"></label>
-            <input type="text" id="Note" name="Note" placeholder="Special Note"><br>
-
-
+            <label for="Note"><h3>Special Note</h3></label>
+            <input type="text" id="Note" placeholder="Any additional information"><br>
 
             <div class="checkbox-container">
                 <label>
-                    <input type="checkbox" id="checkbox" name="terms" required>
-                    I accept the terms & conditions.</label>
+                    <input type="checkbox" id="checkbox" required> I accept the terms & conditions.
+                </label>
             </div>
-
-
         </section>
-        <button type="submit" class="Submitbtn">Donate Now</button>
 
-
+        <button type="submit" class="Submitbtn" onclick="storeDonation()">Donate Now</button>
 
         <section class="foot">
             <footer>
                 <p>| Copyright © 2025 FoodYard | All Rights Reserved.</p>
-
             </footer>
         </section>
     </div>
+
+    <script>
+        function storeDonation() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let address = document.getElementById("address").value;
+            let phone = document.getElementById("phone").value; 
+            let category = document.querySelector('input[name="Category"]:checked')?.value;
+            let expiry = document.getElementById("expiryDate").value;
+            let quantity = document.getElementById("quantity").value;
+            let note = document.getElementById("Note").value;
+    
+            if (!name || !email || !address || !phone || !category || !expiry || !quantity) {
+                alert("Please fill all required fields.");
+                return;
+            }
+    
+            let donation = { name, email, address, phone, category, expiry, quantity, note };
+    
+            let donations = JSON.parse(localStorage.getItem("donations")) || [];
+            donations.push(donation);
+            localStorage.setItem("donations", JSON.stringify(donations));
+    
+            alert("Successfully Donated!");
+            window.location.href = "viewDonations.html";  // ✅ Redirects after storing donation
+        }
+    </script>
+    
 </body>
 
 </html>
