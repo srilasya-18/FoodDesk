@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Donations</title>
-    <link rel="stylesheet" href="vdostyle.css">
+    <link rel="stylesheet" href="viewdostyles.css">
 </head>
 <body>
-        <h1 class="donation-heading">View Donations</h1>
+    <h1 class="donation-heading">View Donations</h1>
 
-        <div id="donationsContainer"></div>
-    
-        <button id="clearAll" class="clear-btn">Clear All</button>
-    
-        <script src="viewDonations.js"></script>
+    <div id="donationsContainer"></div>
+
+    <button id="clearAll" class="clear-btn">Clear All</button>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const donationsContainer = document.getElementById("donationsContainer");
             const clearAllButton = document.getElementById("clearAll");
 
             let donations = JSON.parse(localStorage.getItem("donations")) || [];
+            let loggedInUserEmail = localStorage.getItem("loggedInUserEmail"); // Get logged-in user email
 
             function displayDonations() {
                 donationsContainer.innerHTML = "";
@@ -41,7 +41,11 @@
                         <p><strong>Expiry Date:</strong> ${donation.expiryDate || "N/A"}</p>
                         <p><strong>Quantity:</strong> ${donation.quantity}</p>
                         <p><strong>Note:</strong> ${donation.note}</p>
-                        <button class="delete-btn" data-index="${index}">Delete</button>
+                        <div class="button-container">
+                            ${loggedInUserEmail === donation.email ? 
+                                `<button class="delete-btn" data-index="${index}">Delete</button>` : ""}
+                            <button class="request-btn" onclick="requestFood('${donation.email}')">Request Food</button>
+                        </div>
                     `;
 
                     donationsContainer.appendChild(donationCard);
@@ -58,12 +62,19 @@
                 });
             }
 
+            function requestFood(donorEmail) {
+                alert(`Request sent to donor: ${donorEmail}`);
+            }
+
+            window.requestFood = requestFood; // Make function accessible globally
             displayDonations();
 
             // Clear all donations
             clearAllButton.addEventListener("click", function() {
-                localStorage.removeItem("donations");
-                displayDonations();
+                if (confirm("Are you sure you want to delete all donations?")) {
+                    localStorage.removeItem("donations");
+                    displayDonations();
+                }
             });
         });
     </script>
