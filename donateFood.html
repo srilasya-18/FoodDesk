@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,71 +7,52 @@
     <link rel="stylesheet" href="style.css">
     <title>Donate Food</title>
 </head>
-
 <body>
     <div class="Box_container">
-
         <section class="register_title">
             <div class="register">
                 <h1>Donate <span>a Bit</span></h1>
             </div>
-            <p>
-            <h3>Its Not How Much We Give, But How Much Love We Put in Giving</h3>
-            </p>
+            <p><h3>It’s Not How Much We Give, But How Much Love We Put in Giving</h3></p>
         </section>
 
         <section class="registration_form">
-            <label for="name">
-                <h3>Your Name</h3>
-            </label>
-            <input type="text" id="name" placeholder="Name" input="Name" /><br>
+            <label for="name"><h3>Your Name</h3></label>
+            <input type="text" id="name" placeholder="Name" /><br>
 
-            <label for="email">
-                <h3>Email</h3>
-            </label>
-            <input type="email" name="email" id="email" placeholder="Your Email" input="Email"> <br>
+            <label for="email"><h3>Email</h3></label>
+            <input type="email" id="email" placeholder="Your Email"><br>
 
-            <label for="address">
-                <h3>Address</h3>
-            </label>
-            <input type="text" id="address" placeholder="Address" input="Address" /><br>
+            <label for="address"><h3>Address</h3></label>
+            <input type="text" id="address" placeholder="Address" /><br>
 
-            <label for="phn_no">
-                <h3>Phone Number</h3>
-            </label>
-            <input type="text" id="phn_no" placeholder="Phone Number" input="Phone Number" /><br>
+            <label for="phn_no"><h3>Phone Number</h3></label>
+            <input type="text" id="phn_no" placeholder="Phone Number" /><br>
 
             <div class="category">
                 <h3>Category</h3><br>
-                <label><input type="radio" id="Veg" name="Category" value="Veg"> Veg</label><br>
-                <label><input type="radio" id="Non-Veg" name="Category" value="Non-Veg"> Non-Veg</label><br>
-                <label><input type="radio" id="Both" name="Category" value="Both"> Both</label><br>
+                <label><input type="radio" name="Category" value="Veg"> Veg</label><br>
+                <label><input type="radio" name="Category" value="Non-Veg"> Non-Veg</label><br>
+                <label><input type="radio" name="Category" value="Both"> Both</label><br>
             </div>
 
             <div class="expiry_date">
-                <label for="Expiry_Date">
-                    <h3>Expiry Date:</h3>
-                </label>
+                <label for="Expiry_Date"><h3>Expiry Date:</h3></label>
                 <input type="date" id="Expiry_Date" name="Expiry_Date"><br>
             </div>
 
-            <label for="quantity">
-                <h3>Quantity:</h3>
-            </label>
-            <input type="number" id="quantity" name="quantity" value="1" min="1" step="1"><br>
+            <label for="quantity"><h3>Quantity:</h3></label>
+            <input type="number" id="quantity" value="1" min="1"><br>
 
             <label for="Note"></label>
-            <input type="text" id="Note" name="Note" placeholder="Special Note"><br>
+            <input type="text" id="Note" placeholder="Special Note"><br>
 
             <div class="checkbox-container">
-                <label>
-                    <input type="checkbox" id="checkbox" name="terms" required>
-                    I accept the terms & conditions.
-                </label>
+                <label><input type="checkbox" id="checkbox" required> I accept the terms & conditions.</label>
             </div>
         </section>
 
-        <button type="submit" class="Submitbtn" id="donateBtn">Donate Now</button>
+        <button class="Submitbtn" id="donateBtn">Donate Now</button>
 
         <section class="foot">
             <footer>
@@ -81,8 +61,25 @@
         </section>
     </div>
 
-    <script>
-        document.getElementById("donateBtn").addEventListener("click", function() {
+    <!-- ✅ Firebase Integration Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAK_UXQUklE5iT3Zed8JQpgbfa6e72n9LA",
+            authDomain: "wastenot-2b432.firebaseapp.com",
+            projectId: "wastenot-2b432",
+            storageBucket: "wastenot-2b432.appspot.com",
+            messagingSenderId: "1010451709978",
+            appId: "1:1010451709978:web:a5a59f3139a42860a8d1a3",
+            measurementId: "G-XMKQY4KMYC"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById("donateBtn").addEventListener("click", async () => {
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
             const phone = document.getElementById("phn_no").value;
@@ -93,27 +90,32 @@
             const note = document.getElementById("Note").value;
             const termsAccepted = document.getElementById("checkbox").checked;
 
-            // Validation to ensure all fields are filled
+            // Validate all required fields
             if (!name || !email || !phone || !address || !category || !expiryDate || !quantity || !termsAccepted) {
                 alert("Please fill all required fields and accept the terms.");
                 return;
             }
 
-            // Creating donation object
-            const donation = { name, email, phone, address, category, expiryDate, quantity, note };
+            const donationData = {
+                name,
+                email,
+                phone,
+                address,
+                category,
+                expiryDate,
+                quantity,
+                note
+            };
 
-            // Storing in local storage
-            let donations = JSON.parse(localStorage.getItem("donations")) || [];
-            donations.push(donation);
-            localStorage.setItem("donations", JSON.stringify(donations));
-
-            // Show confirmation popup
-            alert("Successfully Donated!");
-
-            // Redirect to viewDonations.html
-            window.location.href = "viewDonations.html";
+            try {
+                await addDoc(collection(db, "donations"), donationData);
+                alert("Successfully Donated!");
+                window.location.href = "viewDonations.html";
+            } catch (error) {
+                console.error("Error saving donation:", error);
+                alert("Error saving donation. Check console for details.");
+            }
         });
     </script>
 </body>
-
 </html>
