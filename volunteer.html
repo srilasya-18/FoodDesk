@@ -1,18 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Sign-Up</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .volunteer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .volunteer-form input,
+        .volunteer-form select {
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .volunteer-form input:focus,
+        .volunteer-form select:focus {
+            outline: none;
+            border-color:orangered;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .submit-btn {
+            background-color: orangered;
+            color: white;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .form-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-header p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .form-container {
+                padding: 1.2rem;
+            }
+            
+            .volunteer-form input,
+            .volunteer-form select,
+            .submit-btn {
+                padding: 0.7rem 0.9rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <!-- Sign-Up Form Container -->
     <div class="form-wrapper">
       <section class="form-container">
         <div class="form-header">
@@ -83,4 +203,3 @@
     </div>
   </body>
 </html>
-
