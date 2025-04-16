@@ -1,29 +1,27 @@
-/* Style for View Donations heading */
-.donation-heading {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  color: #ff6600; /* Adjust color as needed */
-}
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  list-style: none;
+ 
 }
 
-body {
+
+body,html {
   display: flex;
   justify-content: center;
+
   align-items: center;
-  height: 120vh;
+font-family: Arial, sans-serif;
+  height: 100%;
+  width:100%;
+
   margin: 0;
+
   background-color: white;
 }
-
 
 .menu {
   width: auto;
@@ -148,6 +146,7 @@ ul li {
 #email,
 #quantity,
 #button,
+
 #name,
 #phn_no,
 #radio,
@@ -183,41 +182,28 @@ ul li {
   margin-bottom: 20px;
 }
 
-.Submitbtn,
-button {
-  border-radius: 20px;
 
-  margin: auto;
-  font-size: 15px;
-  padding: 5px 15px;
-  color: white;
-  box-shadow: rgb(132, 65, 23);
-
-  background-color: orangered;
-  align-self: flex-start;
-
-  text-decoration: none;
-  transition: ease 0.3s;
-}
-
-.Submitbtn,
-button:hover {
-  transform: scale(1.2);
-}
 
 .foot {
-  background-color: white;
+  background-color: transparent;
   font-size: 20px;
   text-align: center;
   padding: 20px;
 }
 
-.home {
-  background-color: white;
-  max-width: fit-content;
+
+/* Home page */
+
+.banner {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.bgimage img {
+.banner img {
   position: absolute;
   top: 0;
   left: 0;
@@ -227,97 +213,275 @@ button:hover {
   pointer-events: none;
 }
 
-.title {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 80%;
-  text-align: center;
-  color: rgb(221, 68, 21);
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(1, 0, 5, 0.6), rgba(4, 1, 17, 0.6));
+
+
+
 }
 
-.title h3 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+nav {
+  width: 100%;
+  position: fixed;
+  backdrop-filter: blur(10px);
+  background-image: linear-gradient(rgba(34, 9, 133, 0.2), rgba(11, 8, 24, 0.3));
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 15%);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav .logo {
+  width: 60px;
+  height: 60px;
+  margin-left: 5%;
+ 
+  border-radius: 30px;
+
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 40px;
+}
+
+.navbar {
+  display: flex;
+  margin-right: 4vh;
+  padding: 15px;
+}
+
+.navbar a {
+  color: white;
+  font-size: 18px;
+  
+  padding: 10px 22px;
+  border-radius: 15px;
+  font-weight: 600;
+  
+justify-content: flex-end;
+  margin-right: 0%;
+  text-decoration: none;
+  
+  box-shadow: 5px 5px 10px rgba(228, 72, 5, 0.2);
+  top:0;
+  right: 0;
+ 
+      
+}
+
+.navbar a:hover,
+.navbar a.active {
+
+  color: rgb(19, 15, 14);
+  background: rgba(239, 60, 24, 0.911);
+  box-shadow: 5px 10px 30px rgba(228, 72, 5, 0.2);
+  border-radius: 15px;
+
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(225, 62, 17);
+  font-size: 17px;
+}
+
+.title {
+  text-decoration:solid;
+  
+  font-size: 30px;
+color: rgb(230, 211, 204);
+  -webkit-text-stroke: 1px rgb(231, 72, 19);
+font-weight: 500;
+  padding: 14px 17px;
+  margin-top: 32vh;
+  text-align: center;
+  vertical-align: center;
+}
+
+.title h1 {
+font-weight: 800;
+  font-size: 10vh;
+  color: rgb(231, 72, 19);
+  
+      -webkit-text-stroke: 1px white;
+  text-shadow: 2px black;
+  transition: ease 0.3s;
 }
 
 .title h1:hover {
-  color: rgb(233, 68, 8);
-  -webkit-text-stroke: 1px rgba(233, 23, 12, 0.913);
+  color: rgb(202, 190, 186);
+  
+      -webkit-text-stroke: 1px rgb(235, 8, 8);
 }
 
+
+.Submitbtn,
 .button {
   display: inline-block;
   margin-top: 5vh;
   font-size: 25px;
-  padding: 10px 30px;
-  color: rgb(216, 75, 28);
-
+  padding: 15px 30px;
+  color: rgb(232, 66, 15);
   box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.4);
   background-color: white;
   border-radius: 20px;
   text-decoration: none;
-  transition: ease-in-out 0.3s;
+  transition: ease 0.30s;
+  border: none;
+  /* Ensures consistency with buttons */
+  cursor: pointer;
+  /* Makes it behave like a button */
 }
 
+
+/* Hover Effect */
+
+.Submitbtn {
+  appearance: none;
+}
+.Submitbtn{
+  padding: 5px 10px;
+  font-size:22px;
+  font-weight: 300;
+  width:200px;
+  height:40px;
+  text-align: center;
+  display: block;
+  margin:10px auto;
+}
+.Submitbtn:hover,
 .button:hover {
   transform: scale(1.1);
+  background-color: orangered;
+  color:#fff;
 }
-
-.logo {
-  position: small;
-  top: 20px;
-  left: 20px;
-}
-
-.logo img {
-  width: 200px;
-  height: auto;
-}
-
-.content {
-  position: relative;
-  align-items: center;
-  width: 100%;
-  height: 15vh;
-  font-size: 24px;
-
-  color: black;
-  background-image: linear-gradient(rgba(1, 0, 5, 0.6), rgba(4, 1, 17, 0.6));
-}
-
-.menu {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-}
-
-.menu {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 10;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
+/* Base Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff5f3;
+  /* Soft orange-pink background */
   margin: 0;
+  padding: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.menu ul li a {
-  text-decoration: none;
-  color: rgb(224, 56, 9);
-  font-size: 18px;
-  padding: 8px 20px;
-  border-radius: 20px;
+.form-wrapper {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+/* Form Container */
+.form-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(255, 83, 26, 0.1);
+  /* Orange shadow */
+  padding: 2rem;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h1 {
+  color: #e74c3c;
+  /* Strong red */
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.quote {
+  color: #e67e22;
+  /* Orange */
+  font-style: italic;
+  margin-top: 0;
+  font-size: 0.95rem;
+}
+
+/* Form Elements */
+.volunteer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #d35400;
+  /* Dark orange */
+  font-size: 0.9rem;
+}
+
+.volunteer-form input,
+.volunteer-form select {
+  padding: 0.8rem 1rem;
+  border: 1px solid #f39c12;
+  /* Orange border */
+  border-radius: 6px;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
-.menu ul li a:hover {
-  background-color: #ce4f19;
-  color: black;
+.volunteer-form input:focus,
+.volunteer-form select:focus {
+  outline: none;
+  border-color: #e74c3c;
+  /* Red */
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  /* Red shadow */
+}
+
+/* Submit Button */
+.submit-btn {
+  background-color: #e74c3c;
+  /* Red */
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background-color: #c0392b;
+  /* Darker red */
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .form-container {
+      padding: 1.5rem;
+  }
+
+  .form-header h1 {
+      font-size: 1.5rem;
+  }
+
+  .quote {
+      font-size: 0.85rem;
+  }
 }
