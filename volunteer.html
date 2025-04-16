@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volunteer Sign-Up</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Sign-Up Form Container -->
+    <div class="form-wrapper">
+      <section class="form-container">
+        <div class="form-header">
+          <h1>Volunteer Registration</h1>
+          <p>Join our team and make a difference</p>
+        </div>
+
+        <form class="volunteer-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your full name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email address"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your phone number"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Your full address"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="role">Volunteer Role</label>
+            <select id="role" name="role" required>
+              <option value="">Select a role</option>
+              <option value="Organizer">Event Organizer</option>
+              <option value="Volunteer">General Volunteer</option>
+              <option value="Support">Support Staff</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Register as Volunteer
+          </button>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>
+
