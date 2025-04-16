@@ -5,79 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Donations</title>
     <link rel="stylesheet" href="viewdostyles.css">
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAK_UXQUklE5iT3Zed8JQpgbfa6e72n9LA",
+            authDomain: "wastenot-2b432.firebaseapp.com",
+            projectId: "wastenot-2b432",
+            storageBucket: "wastenot-2b432.appspot.com",
+            messagingSenderId: "1010451709978",
+            appId: "1:1010451709978:web:a5a59f3139a42860a8d1a3",
+            measurementId: "G-XMKQY4KMYC"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const donationsContainer = document.getElementById("donationsContainer");
+            let loggedInUserEmail = localStorage.getItem("loggedInUserEmail"); // adjust based on your auth
+
+            async function fetchDonations() {
+                donationsContainer.innerHTML = "";
+                try {
+                    const snapshot = await getDocs(collection(db, "donations"));
+
+                    if (snapshot.empty) {
+                        donationsContainer.innerHTML = "<p>No donations available.</p>";
+                        return;
+                    }
+
+                    snapshot.forEach(docSnap => {
+                        const donation = docSnap.data();
+                        const donationId = docSnap.id;
+
+                        const donationCard = document.createElement("div");
+                        donationCard.classList.add("donation-card");
+
+                        donationCard.innerHTML = `
+                            <h2>${donation.name}</h2>
+                            <p><strong>Email:</strong> ${donation.email}</p>
+                            <p><strong>Address:</strong> ${donation.address}</p>
+                            <p><strong>Phone:</strong> ${donation.phone || "N/A"}</p>
+                            <p><strong>Category:</strong> ${donation.category}</p>
+                            <p><strong>Expiry Date:</strong> ${donation.expiryDate || "N/A"}</p>
+                            <p><strong>Quantity:</strong> ${donation.quantity}</p>
+                            <p><strong>Note:</strong> ${donation.note}</p>
+                            <div class="button-container">
+                                ${loggedInUserEmail === donation.email ?
+                                    `<button class="delete-btn" data-id="${donationId}">Delete</button>` : ""}
+                                <button class="request-btn" onclick="requestFood('${donation.email}')">Request Food</button>
+                            </div>
+                        `;
+
+                        donationsContainer.appendChild(donationCard);
+                    });
+
+                    // Attach delete listeners
+                    document.querySelectorAll(".delete-btn").forEach(button => {
+                        button.addEventListener("click", async function () {
+                            const donationId = this.getAttribute("data-id");
+                            const confirmDelete = confirm("Are you sure you want to delete this donation?");
+                            if (confirmDelete) {
+                                await deleteDoc(doc(db, "donations", donationId));
+                                alert("Donation deleted!");
+                                fetchDonations(); // Refresh list
+                            }
+                        });
+                    });
+
+                } catch (err) {
+                    console.error("Error fetching donations:", err);
+                    donationsContainer.innerHTML = "<p>Error loading donations.</p>";
+                }
+            }
+
+            window.requestFood = function (donorEmail) {
+                alert(`Request sent to donor: ${donorEmail}`);
+            };
+
+            fetchDonations();
+        });
+    </script>
 </head>
 <body>
     <h1 class="donation-heading">View Donations</h1>
-
     <div id="donationsContainer"></div>
-
-    <button id="clearAll" class="clear-btn">Clear All</button>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const donationsContainer = document.getElementById("donationsContainer");
-            const clearAllButton = document.getElementById("clearAll");
-
-            let donations = JSON.parse(localStorage.getItem("donations")) || [];
-            let loggedInUserEmail = localStorage.getItem("loggedInUserEmail"); // Get logged-in user email
-
-            function displayDonations() {
-                donationsContainer.innerHTML = "";
-                if (donations.length === 0) {
-                    donationsContainer.innerHTML = "<p>No donations available.</p>";
-                    return;
-                }
-
-                donations.forEach((donation, index) => {
-                    const donationCard = document.createElement("div");
-                    donationCard.classList.add("donation-card");
-
-                    donationCard.innerHTML = `
-                        <h2>${donation.name}</h2>
-                        <p><strong>Email:</strong> ${donation.email}</p>
-                        <p><strong>Address:</strong> ${donation.address}</p>
-                        <p><strong>Phone:</strong> ${donation.phone || "N/A"}</p>
-                        <p><strong>Category:</strong> ${donation.category}</p>
-                        <p><strong>Expiry Date:</strong> ${donation.expiryDate || "N/A"}</p>
-                        <p><strong>Quantity:</strong> ${donation.quantity}</p>
-                        <p><strong>Note:</strong> ${donation.note}</p>
-                        <div class="button-container">
-                            ${loggedInUserEmail === donation.email ? 
-                                `<button class="delete-btn" data-index="${index}">Delete</button>` : ""}
-                            <button class="request-btn" onclick="requestFood('${donation.email}')">Request Food</button>
-                        </div>
-                    `;
-
-                    donationsContainer.appendChild(donationCard);
-                });
-
-                // Add delete event listeners
-                document.querySelectorAll(".delete-btn").forEach(button => {
-                    button.addEventListener("click", function() {
-                        const index = this.getAttribute("data-index");
-                        donations.splice(index, 1);
-                        localStorage.setItem("donations", JSON.stringify(donations));
-                        displayDonations();
-                    });
-                });
-            }
-
-            function requestFood(donorEmail) {
-                alert(`Request sent to donor: ${donorEmail}`);
-            }
-
-            window.requestFood = requestFood; // Make function accessible globally
-            displayDonations();
-
-            // Clear all donations
-            clearAllButton.addEventListener("click", function() {
-                if (confirm("Are you sure you want to delete all donations?")) {
-                    localStorage.removeItem("donations");
-                    displayDonations();
-                }
-            });
-        });
-    </script>
-
 </body>
 </html>
