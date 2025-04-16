@@ -4,12 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Donations</title>
-    <link rel="stylesheet" href="viewdostyles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        /* Heading */
+        .donation-heading {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Container for Donations */
+        #donationsContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Donation Card Styling */
+        .donation-card {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            border: 3px solid #ff9800; /* Orange border */
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Donation Details */
+        .donation-card p {
+            font-size: 16px;
+            text-align: left;
+            width: 100%;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Request Food Button */
+        .request-btn {
+            background-color: #ff9800; /* Orange button */
+            color: white;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+
+        .request-btn:hover {
+            background-color: #e68900;
+        }
+
+        /* Small Delete Button */
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Clear All Button */
+        .clear-btn {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .clear-btn:hover {
+            background-color: #e68900;
+        }
+    </style>
 
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
         import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAK_UXQUklE5iT3Zed8JQpgbfa6e72n9LA",
@@ -23,6 +122,7 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const auth = getAuth(app);
 
         document.addEventListener("DOMContentLoaded", async () => {
             const donationsContainer = document.getElementById("donationsContainer");
@@ -55,7 +155,7 @@
                             <p><strong>Quantity:</strong> ${donation.quantity}</p>
                             <p><strong>Note:</strong> ${donation.note}</p>
                             <div class="button-container">
-                                ${loggedInUserEmail === donation.email ?
+                                ${loggedInUserEmail === donation.email ? 
                                     `<button class="delete-btn" data-id="${donationId}">Delete</button>` : ""}
                                 <button class="request-btn" onclick="requestFood('${donation.email}')">Request Food</button>
                             </div>
@@ -85,14 +185,26 @@
 
             window.requestFood = function (donorEmail) {
                 alert(`Request sent to donor: ${donorEmail}`);
+                // You can add email notification functionality here if necessary
+            };
+
+            window.clearAllDonations = async function () {
+                const snapshot = await getDocs(collection(db, "donations"));
+                snapshot.forEach(async (docSnap) => {
+                    await deleteDoc(doc(db, "donations", docSnap.id));
+                });
+                fetchDonations(); // Refresh list after clearing
+                alert("All donations have been cleared.");
             };
 
             fetchDonations();
         });
     </script>
+
 </head>
 <body>
     <h1 class="donation-heading">View Donations</h1>
     <div id="donationsContainer"></div>
+    <button class="clear-btn" onclick="clearAllDonations()">Clear All Donations</button>
 </body>
 </html>
